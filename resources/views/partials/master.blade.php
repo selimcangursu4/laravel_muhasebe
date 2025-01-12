@@ -5,6 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}" />
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>

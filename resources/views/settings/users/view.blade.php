@@ -145,6 +145,7 @@
             </div>
             <div class="modal-body">
               <form>
+                @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-10">
@@ -245,8 +246,50 @@
     $('#kt_datatable_zero_configuration').DataTable();
 
     // Yeni Müşteri Kaydet
-
-
+    $('#addUserButton').click(function(e){
+        e.preventDefault();
+        // Form Veri Değerleri
+        let fullname       = $('#fullname').val();
+        let email          = $('#email').val(); ;
+        let phone          = $('#phone').val(); ;
+        let department_id  = $('#departmentId').val();
+        let status_id      = $('#statusId').val();
+        let start_date     = $('#startDate').val();
+        let birthday       = $('#birthday').val();
+        let city           = $('#city').val();
+        let district       = $('#district').val();
+        let password       = $('#password').val();
+        let address        = $('#address').val();
+        // Ajax İşlemi
+        $.ajax({
+            type:"POST",
+            url:"/settings/users/store",
+            data:{
+                _token: '{{ csrf_token() }}',
+                fullname       : fullname,
+                email          : email,
+                phone          : phone,
+                department_id  : department_id,
+                status_id      : status_id,
+                start_date     : start_date,
+                birthday       : birthday,
+                city           : city,
+                district       : district,
+                password       : password,
+                address        : address
+            },
+            success:function(response)
+            {
+                if(response.success == true)
+            {
+                console.log(response.message);
+            }
+            else{
+                console.log(response.message);
+            }
+            }
+        })
+    })
     })
   </script>
   @endsection

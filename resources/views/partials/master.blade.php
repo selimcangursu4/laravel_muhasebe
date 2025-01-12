@@ -7,6 +7,7 @@
 		<meta name="keywords" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}" />
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<link href="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
@@ -47,35 +48,7 @@
 					<div class="app-container container-xxl d-flex flex-row flex-column-fluid">
 						<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
 							<div class="d-flex flex-column flex-column-fluid">
-								<div id="kt_app_toolbar" class="app-toolbar pt-lg-9 pt-6">
-									<div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack flex-wrap">
-										<div class="d-flex flex-stack flex-wrap gap-4 w-100">
-											<div class="page-title d-flex flex-column gap-3 me-3">
-												<h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-2x my-0">Kontrol Paneli</h1>
-												<ul class="breadcrumb breadcrumb-separatorless fw-semibold">
-													<li class="breadcrumb-item text-gray-700 fw-bold lh-1">
-														<a href="../dist/index.html" class="text-gray-500">
-															<i class="ki-duotone ki-home fs-3 text-gray-400 me-n1"></i>
-														</a>
-													</li>
-													<li class="breadcrumb-item">
-														<i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
-													</li>
-													<li class="breadcrumb-item text-gray-700 fw-bold lh-1">Kontrol Paneli</li>
-													<li class="breadcrumb-item">
-														<i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
-													</li>
-													<li class="breadcrumb-item text-gray-500">Default</li>
-												</ul>
-											</div>
-											<div class="d-flex align-items-center gap-3 gap-lg-5">
-												<div class="m-0">
-													<a href="#" class="btn btn-flex btn-sm btn-color-gray-700 bg-body fw-bold px-4" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project"><i class="fa-solid fa-floppy-disk"></i> Yeni Müşteri Ekle</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+
 								<div id="kt_app_content" class="app-content pb-0">
 								   @yield('main')
 								</div>

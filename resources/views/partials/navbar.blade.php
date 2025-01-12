@@ -1,10 +1,7 @@
 <div class="app-navbar">
     <div class="app-navbar-item ms-1">
         <div class="btn btn-icon btn-color-white btn-active-color-primary" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-            <i class="ki-duotone ki-graph-3 fs-1">
-                <span class="path1"></span>
-                <span class="path2"></span>
-            </i>
+            <i class="fa-regular fa-bell fs-2"></i>
         </div>
         <div class="menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px" data-kt-menu="true" id="kt_menu_notifications">
             <div class="d-flex flex-column bgi-no-repeat rounded-top" style="background-image:url('assets/media/misc/menu-header-bg.jpg')">
@@ -29,10 +26,12 @@
     </div>
     <div class="app-navbar-item ms-1">
         <div class="btn btn-icon btn-color-white btn-active-color-primary" id="kt_drawer_chat_toggle">
-            <i class="ki-duotone ki-abstract-36 fs-1">
-                <span class="path1"></span>
-                <span class="path2"></span>
-            </i>
+            <i class="fa-regular fa-comment-dots fs-2"></i>
+        </div>
+    </div>
+    <div class="app-navbar-item ms-1">
+        <div class="btn btn-icon btn-color-white btn-active-color-primary">
+            <i class="fa-solid fa-gear fs-2"></i>
         </div>
     </div>
     <div class="app-navbar-item ms-3 me-6" id="kt_header_user_menu_toggle">

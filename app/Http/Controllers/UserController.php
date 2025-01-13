@@ -158,7 +158,7 @@ class UserController extends Controller
     {
         try {
 
-            $user_id = $request->input('user_id');
+            $user_id     = $request->input('user_id');
             $delete_user = User::where('id','=',$user_id);
             $delete_user->delete();
 
@@ -177,7 +177,7 @@ class UserController extends Controller
     public function is_active(Request $request)
     {
         try {
-            $user_id = $request->input('user_id');
+            $user_id     = $request->input('user_id');
             $delete_user = User::where('id', '=', $user_id)->update(['status_id' => 0]);
 
             // Silme Başarılı Mesajı

@@ -250,18 +250,20 @@
         	$('#updateUserButton').click(function(e) {
         		e.preventDefault();
         		// Kullanıcı Bilgileri Güncelleme İnput Verileri
-        		let user_id = $('#user_id').val();
-        		let fullname = $('#fullname').val();
-        		let email = $('#email').val();
-        		let phone = $('#phone').val();
+
+        		let user_id       = $('#user_id').val();
+        		let fullname      = $('#fullname').val();
+        		let email         = $('#email').val();
+        		let phone         = $('#phone').val();
         		let department_id = $('#department_id').val();
-        		let status_id = $('#status_id').val();
-        		let start_date = $('#start_date').val();
-        		let birthday = $('#birthday').val();
-        		let created_at = $('#created_at').val();
-        		let city_id = $('#city_id').val();
-        		let district_id = $('#district_id').val();
-        		let address = $('#address').val();
+        		let status_id     = $('#status_id').val();
+        		let start_date    = $('#start_date').val();
+        		let birthday      = $('#birthday').val();
+        		let created_at    = $('#created_at').val();
+        		let city_id       = $('#city_id').val();
+        		let district_id   = $('#district_id').val();
+        		let address       = $('#address').val();
+
         		// Ajax İşlemi
         		$.ajax({
         			type: "POST",
@@ -440,8 +442,8 @@
         	$('#updateUserPassword').click(function(e) {
         		e.preventDefault();
 
-        		let user_id = $('#user_id').val();
-        		let password = $('#newPassword').val();
+        		let user_id           = $('#user_id').val();
+        		let password          = $('#newPassword').val();
         		let newPasswordRepeat = $('#newPasswordRepeat').val();
 
         		if (password == newPasswordRepeat) {

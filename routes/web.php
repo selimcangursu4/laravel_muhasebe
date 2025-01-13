@@ -12,3 +12,4 @@ Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard.i
 Route::get('/settings/view',[SettingsController::class, 'view']);
 Route::get('/settings/users/view',[UserController::class, 'view']);
 Route::post('/settings/users/store',[UserController::class, 'store'])->name('users.store');
+Route::post('/settings/users/fetch',[UserController::class, 'fetch'])->name('users.fetch');

@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DepartmentsModel;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
+    // Kullanıcılar İndex Sayfası
     public function view()
     {
-        return view('settings.users.view');
+        $departments = DepartmentsModel::where('status_id','=',1);
+        return view('settings.users.view',compact('departments'));
     }
 
+    // Kullanıcı Oluşturma
     public function store(Request $request)
     {
         try {
@@ -46,13 +51,56 @@ class UserController extends Controller
         $user->password      = $bcrypt_password;
         $user->save();
 
-           return response()->json(['success'=>true, 'message'=>'Kullanıcı Başarıyla Oluşturuldu']);
+            // Başarılı İşlem Durumunu Dön
+            return response()->json(['success'=>true, 'message'=>'Kullanıcı Başarıyla Oluşturuldu']);
 
         } catch (Exception $error) {
 
-            return response()->json(['success'=>false, 'message'=>'Kullanıcı Oluşturulamadı Hata' . $error->getMessage()]);
+            // Hata İşlem Durumunu Dön
+            return response()->json(['success'=>false, 'message'=>'Kullanıcı Oluşturulamadı Hata' . ' ' . $error->getMessage()]);
         }
     }
+
+    // Kullanıcıların View Sayfası Datatables Listelenmesi
+    public function fetch(Request $request)
+    {
+        $users = User::query();
+
+        if ($request->has('user_id') && $request->input('user_id') !== null) {
+            $users->where('id', $request->input('user_id'));
+        }
+
+        if ($request->has('fullname') && $request->input('fullname') !== null) {
+            $users->where('name', 'LIKE', '%' . $request->input('fullname') . '%');
+        }
+
+        if ($request->has('email') && $request->input('email') !== null) {
+            $users->where('email', 'LIKE', '%' . $request->input('email') . '%');
+        }
+
+        if ($request->has('phone') && $request->input('phone') !== null) {
+            $users->where('phone', 'LIKE', '%' . $request->input('phone') . '%');
+        }
+
+        if ($request->has('department_id') && $request->input('department_id') !== null) {
+            $users->where('department_id', $request->input('department_id'));
+        }
+
+        if ($request->has('status_id') && $request->input('status_id') !== null) {
+            $users->where('status_id', $request->input('status_id'));
+        }
+
+        if ($request->has('start_date') && $request->input('start_date') !== null) {
+            $users->where('start_date', '>=', $request->input('start_date'));
+        }
+
+        if ($request->has('end_date') && $request->input('end_date') !== null) {
+            $users->where('start_date', '<=', $request->input('end_date'));
+        }
+
+        return datatables()->of($users)->make(true);
+    }
+
 
 
 }

@@ -311,13 +311,17 @@
 			},
 			{
 				data: 'start_date',
-				name: 'start_date'
+				name: 'start_date',
+                render:function(data,type,row)
+                {
+                    return moment(row['start_date']).format('DD-MM-YYYY');
+                }
 			},
 			{
 				data: 'action',
 				name: 'action',
 				render: function(data, type, row) {
-					return `<a href="${row.id}" class="btn btn-primary me-2 btn-sm">Detay</a><button class="btn btn-danger btn-sm" type="button">Sil</button>`;
+					return `<a href="/settings/users/edit/${row.id}" class="btn btn-primary me-2 btn-sm">Detay</a><button class="btn btn-danger btn-sm" type="button">Sil</button>`;
 				}
 			},
 		]

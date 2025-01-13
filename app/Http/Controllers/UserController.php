@@ -101,6 +101,13 @@ class UserController extends Controller
         return datatables()->of($users)->make(true);
     }
 
+    public function edit(Request $request , $id)
+    {
+        $user = User::find($id);
+
+        return view('settings.users.edit',compact('user'));
+    }
+
 
 
 }

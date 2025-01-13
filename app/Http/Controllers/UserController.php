@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DepartmentModel;
 use App\Models\DepartmentsModel;
 use App\Models\User;
 use Exception;
@@ -101,13 +102,111 @@ class UserController extends Controller
         return datatables()->of($users)->make(true);
     }
 
+    // Kullanıcı Detay Sayfası
     public function edit(Request $request , $id)
     {
-        $user = User::find($id);
+        $user        = User::find($id);
+        $departments = DepartmentsModel::where('status_id','=',1);
 
-        return view('settings.users.edit',compact('user'));
+        return view('settings.users.edit',compact('user','departments'));
     }
 
+    // Kullanıcı Bilgilerini Güncelleme
+    public function update(Request $request)
+    {
+        try {
+        // Formdan Gelen Değerler
+        $user_id       = $request->input('user_id');
+        $fullname      = $request->input('fullname');
+        $email         = $request->input('email');
+        $phone         = $request->input('phone');
+        $department_id = $request->input('department_id');
+        $status_id     = $request->input('status_id');
+        $start_date    = $request->input('start_date');
+        $created_at    = $request->input('created_at');
+        $birthday      = $request->input('birthday');
+        $city_id       = $request->input('city_id');
+        $district_id   = $request->input('district_id');
+        $address       = $request->input('address');
+
+        $user = User::where('id','=',$user_id);
+
+        $user->update([
+            'name'          => $fullname,
+            'email'         => $email,
+            'phone'         => $phone,
+            'department_id' => $department_id,
+            'status_id'     => $status_id,
+            'start_date'    => $start_date,
+            'created_at'    => $created_at,
+            'birth_date'    => $birthday,
+            'city_id'       => $city_id,
+            'district_id'   => $district_id,
+            'address'       => $address,
+        ]);
+           //Güncelleme Başarılı Mesajı
+           return response()->json(['success'=>true, 'message'=>'Kullanıcı Bilgileri Güncellendi']);
+        } catch (Exception $error) {
+            // Güncelleme Başarısız Mesajı
+           return response()->json(['success'=>false, 'message'=>'Kullanıcı Bilgileri Güncellenemedi Hata' .''. $error->getMessage()]);
+        }
+
+    }
+
+    // Kullanıcı Silme Post İşlemi
+    public function delete(Request $request)
+    {
+        try {
+
+            $user_id = $request->input('user_id');
+            $delete_user = User::where('id','=',$user_id);
+            $delete_user->delete();
+
+            // Silme Başarılı Mesajı
+            return response()->json(['success'=> true, 'message'=>"Kullanıcı Başarıyla Silindi"]);
+
+        } catch (Exception $error) {
+
+            // Silme Başarısız Mesajı
+            return response()->json(['success'=> true, 'message'=>"Kullanıcı Silinemedi" . ' ' . $error->getMessage()]);
+
+        }
+    }
+
+    // Kullanıcıyı Pasife Al
+    public function is_active(Request $request)
+    {
+        try {
+            $user_id = $request->input('user_id');
+            $delete_user = User::where('id', '=', $user_id)->update(['status_id' => 0]);
+
+            // Silme Başarılı Mesajı
+            return response()->json(['success' => true, 'message' => "Kullanıcı Başarıyla Pasife Alındı"]);
+
+        } catch (Exception $error) {
+            // Silme Başarısız Mesajı
+            return response()->json(['success' => false, 'message' => "Kullanıcı Pasife Alınamadı" . ' ' . $error->getMessage()]);
+        }
+    }
+
+    // Kullanıcı Parolası Güncelleme
+
+    public function password_update(Request $request)
+    {
+        try {
+            $password        = $request->input('password');
+            $newPassword     = bcrypt($password);
+            $user_id         = $request->input('user_id');
+            $update_password = User::where('id', '=', $user_id)->update(['password' => $newPassword]);
+
+            // Silme Başarılı Mesajı
+            return response()->json(['success' => true, 'message' => "Kullanıcı Parolası Başarıyla Güncellendi"]);
+
+        } catch (Exception $error) {
+            // Silme Başarısız Mesajı
+            return response()->json(['success' => false, 'message' => "Kullanıcı Parolası Güncellenemedi " . ' ' . $error->getMessage()]);
+        }
+    }
 
 
 }

@@ -7,6 +7,7 @@ use App\Models\DepartmentsModel;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
@@ -34,8 +35,8 @@ class UserController extends Controller
         $city_id         = $request->input('city');
         $district_id     = $request->input('district');
         $address         = $request->input('address');
-        $password        = $request->input('passwrod');
-        $bcrypt_password = bcrypt($password);
+        $password        = $request->input('password');
+        $bcrypt_password = Hash::make($password);
 
         // Veritabanına Kayıt Ekle
         $user                = new User();
@@ -190,7 +191,6 @@ class UserController extends Controller
     }
 
     // Kullanıcı Parolası Güncelleme
-
     public function password_update(Request $request)
     {
         try {
@@ -199,11 +199,11 @@ class UserController extends Controller
             $user_id         = $request->input('user_id');
             $update_password = User::where('id', '=', $user_id)->update(['password' => $newPassword]);
 
-            // Silme Başarılı Mesajı
+            // Parola Güncelleme Başarılı Mesajı
             return response()->json(['success' => true, 'message' => "Kullanıcı Parolası Başarıyla Güncellendi"]);
 
         } catch (Exception $error) {
-            // Silme Başarısız Mesajı
+            // Parola Güncelleme Başarısız Mesajı
             return response()->json(['success' => false, 'message' => "Kullanıcı Parolası Güncellenemedi " . ' ' . $error->getMessage()]);
         }
     }

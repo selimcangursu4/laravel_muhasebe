@@ -172,10 +172,8 @@
                         <div class="mb-10">
                          <label class="required form-label">Departman Bilgisi</label>
                          <select class="form-select form-select-solid" id="departmentId" name="departmentId" data-control="select2" data-placeholder="Seçiniz...">
-                            <option></option>
-                            @foreach ($departments as $department)
-                            <option value="{{$department->id}}">{{$department->name}}</option>
-                            @endforeach
+                            <option>1</option>
+
                         </select>
                         </div>
                     </div>

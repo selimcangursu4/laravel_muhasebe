@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',[LoginController::class,'index'])->name('login.index');
+Route::post('/login',[LoginController::class,'login'])->name('user.login');
+
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard.index');
 
 Route::get('/settings/view',[SettingsController::class, 'view']);
@@ -18,3 +20,4 @@ Route::post('/settings/users/update',[UserController::class, 'update'])->name('u
 Route::post('/settings/users/delete',[UserController::class, 'delete'])->name('users.delete');
 Route::post('/settings/users/is-active',[UserController::class, 'is_active'])->name('users.is-active');
 Route::post('/settings/users/password/update',[UserController::class, 'password_update'])->name('users.update.password');
+

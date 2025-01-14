@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <i class="fa-brands fa-codepen"></i>
-                        <a href="" class="text-dark">Kullanıcı Yönetimi</a>
+                        <a href="{{route('settings.users.view')}}" class="text-dark">Kullanıcı Yönetimi</a>
                     </div>
                     <div class="col-md-3">
                         <i class="fa-brands fa-codepen"></i>

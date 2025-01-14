@@ -31,7 +31,7 @@
     </div>
     <div class="app-navbar-item ms-1">
         <div class="btn btn-icon btn-color-white btn-active-color-primary">
-            <i class="fa-solid fa-gear fs-2"></i>
+           <a href="{{route('settings.view')}}"><i class="fa-solid fa-gear fs-2"></i></a>
         </div>
     </div>
     <div class="app-navbar-item ms-3 me-6" id="kt_header_user_menu_toggle">
